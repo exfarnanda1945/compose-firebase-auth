@@ -1,0 +1,66 @@
+package com.example.composefirebaseauth.presentation.login
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LoginScreen() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp), contentAlignment = Alignment.Center
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Login Form",
+                style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.SemiBold)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            OutlinedTextField(value = "", onValueChange = {}, label = {
+                Text("Email")
+            })
+            Spacer(modifier = Modifier.height(16.dp))
+            OutlinedTextField(value = "", onValueChange = {}, label = {
+                Text("Password")
+            })
+            Spacer(modifier = Modifier.height(32.dp))
+            Button(
+                onClick = { },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 32.dp)
+            ) {
+                Text(text = "Login")
+            }
+        }
+    }
+
+}
+
+
+@Preview(showSystemUi = true, showBackground = true)
+@Composable
+fun LoginScreenPreview() {
+    LoginScreen()
+}
