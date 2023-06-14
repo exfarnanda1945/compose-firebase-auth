@@ -1,4 +1,4 @@
-package com.example.composefirebaseauth
+package com.example.composefirebaseauth.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
