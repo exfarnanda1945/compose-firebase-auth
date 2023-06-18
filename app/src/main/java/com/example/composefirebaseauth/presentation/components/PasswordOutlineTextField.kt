@@ -1,6 +1,7 @@
 package com.example.composefirebaseauth.presentation.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -24,7 +25,8 @@ fun PasswordOutlineTextField(
     onValueChanged: (value: String) -> Unit,
     label: String,
     isError: Boolean,
-    supportingText: String
+    supportingText: String,
+    modifier: Modifier = Modifier
 ) {
     var isPasswordVisibility by remember {
         mutableStateOf(false)
@@ -36,6 +38,7 @@ fun PasswordOutlineTextField(
         )
 
     OutlinedTextField(
+        modifier = modifier.fillMaxWidth(),
         value = value,
         onValueChange = onValueChanged,
         label = {
