@@ -40,7 +40,10 @@ class LoginViewModel @Inject constructor(
             }
 
             LoginEvent.OnSubmit -> submitData()
-            LoginEvent.NavigateToSignUpScreen -> sendUiEvent(UiEvent.Navigate(Routes.SignUpScreen.route))
+            LoginEvent.NavigateToSignUpScreen -> {
+                sendUiEvent(UiEvent.Navigate(Routes.SignUpScreen.route))
+                formState = LoginFormState()
+            }
         }
     }
 

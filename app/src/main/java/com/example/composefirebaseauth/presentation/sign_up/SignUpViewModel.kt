@@ -25,14 +25,17 @@ class SignUpViewModel @Inject constructor(
     private val signUpValidation: ISignUpValidation,
 ) : ViewModel() {
 
-     var formState by mutableStateOf(SignUpFormState())
+    var formState by mutableStateOf(SignUpFormState())
 
     private var _signUpChannel = Channel<UiEvent>()
     val signUpChannel = _signUpChannel.receiveAsFlow()
 
     fun onEvent(event: SignUpEvent) {
         when (event) {
-            SignUpEvent.NavigateToLoginScreen -> sendUiEvent(UiEvent.PopBackStack)
+            SignUpEvent.NavigateToLoginScreen -> {
+                sendUiEvent(UiEvent.PopBackStack)
+                formState = SignUpFormState()
+            }
             is SignUpEvent.OnConfirmPasswordChange -> {
                 formState = formState.copy(
                     confirmPassword = event.confirmPassword
@@ -77,7 +80,7 @@ class SignUpViewModel @Inject constructor(
             confirmPasswordValidation
         ).any { !it.isSuccess }
 
-        if(hasError){
+        if (hasError) {
             formState = formState.copy(
                 nameError = nameValidation.errorMessage,
                 emailError = emailValidation.errorMessage,
@@ -85,7 +88,7 @@ class SignUpViewModel @Inject constructor(
                 confirmPasswordError = confirmPasswordValidation.errorMessage
             )
             return
-        }else{
+        } else {
             formState = formState.copy(
                 nameError = null,
                 emailError = null,
@@ -102,12 +105,15 @@ class SignUpViewModel @Inject constructor(
                 confirmPassword = formState.password
             )
 
-            authRepository.register(register).collect{result ->
+            authRepository.register(register).collect { result ->
                 Log.d("RegisterResult", "submitData: ${result.message}")
-                when(result){
+                when (result) {
                     is Resource.Error -> sendUiEvent(UiEvent.OnError(result.message.toString()))
                     is Resource.Loading -> sendUiEvent(UiEvent.OnLoading)
-                    is Resource.Success -> sendUiEvent(UiEvent.OnSuccess())
+                    is Resource.Success -> {
+                        sendUiEvent(UiEvent.OnSuccess())
+                        formState = SignUpFormState()
+                    }
                 }
             }
         }
@@ -118,5 +124,6 @@ class SignUpViewModel @Inject constructor(
             _signUpChannel.send(event)
         }
     }
+
 
 }
