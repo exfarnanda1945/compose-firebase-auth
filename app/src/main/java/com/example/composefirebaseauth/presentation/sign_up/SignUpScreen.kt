@@ -75,7 +75,7 @@ fun SignUpScreen(navHostController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(32.dp), contentAlignment = Alignment.Center
+            .padding(64.dp), contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
@@ -94,7 +94,7 @@ fun SignUpScreen(navHostController: NavHostController) {
                 isError = formState.nameError != null,
                 supportingText = formState.nameError ?: ""
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             SingleLineOutlineTextField(
                 value = formState.email,
@@ -103,7 +103,7 @@ fun SignUpScreen(navHostController: NavHostController) {
                 isError = formState.emailError != null,
                 supportingText = formState.emailError ?: ""
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             PasswordOutlineTextField(
                 value = formState.password,
@@ -112,7 +112,7 @@ fun SignUpScreen(navHostController: NavHostController) {
                 isError = formState.passwordError != null,
                 supportingText = formState.passwordError ?: ""
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             PasswordOutlineTextField(
                 value = formState.confirmPassword,
@@ -123,7 +123,7 @@ fun SignUpScreen(navHostController: NavHostController) {
                 isError = formState.confirmPasswordError != null,
                 supportingText = formState.confirmPasswordError ?: ""
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             Button(
                 onClick = {
@@ -135,7 +135,7 @@ fun SignUpScreen(navHostController: NavHostController) {
             ) {
                 Text(text = "Sign Up")
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                 Text(text = "Have an account?")
                 Text(

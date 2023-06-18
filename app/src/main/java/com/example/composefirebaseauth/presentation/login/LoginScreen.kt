@@ -58,12 +58,13 @@ fun LoginScreen(navHostController: NavHostController) {
                         .show()
                     loading = false
                 }
+
                 UiEvent.OnLoading -> loading = true
                 is UiEvent.OnSuccess -> {
                     Toast.makeText(context, "Success Login !", Toast.LENGTH_SHORT).show()
                     loading = false
-                    navHostController.navigate(Routes.HomeScreen.route){
-                        popUpTo(Routes.LoginScreen.route){
+                    navHostController.navigate(Routes.HomeScreen.route) {
+                        popUpTo(Routes.LoginScreen.route) {
                             inclusive = true
                         }
                     }
@@ -82,10 +83,10 @@ fun LoginScreen(navHostController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp), contentAlignment = Alignment.Center
+            .padding(64.dp), contentAlignment = Alignment.Center
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth(),
+
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
@@ -96,23 +97,22 @@ fun LoginScreen(navHostController: NavHostController) {
 
             SingleLineOutlineTextField(
                 value = state.email,
-                onValueChanged = { loginViewModel.onEvent(LoginEvent.OnChangeEmail(it))},
+                onValueChanged = { loginViewModel.onEvent(LoginEvent.OnChangeEmail(it)) },
                 label = "Email",
                 isError = state.emailError != null,
-                supportingText = state.emailError ?: ""
+                supportingText = state.emailError ?: "",
             )
-            Spacer(modifier = Modifier.height(16.dp))
-
+            Spacer(modifier = Modifier.height(4.dp))
             PasswordOutlineTextField(
                 value = state.password,
-                onValueChanged ={
+                onValueChanged = {
                     loginViewModel.onEvent(LoginEvent.OnChangePassword(it))
-                } ,
-                label ="Password" ,
+                },
+                label = "Password",
                 isError = state.passwordError != null,
                 supportingText = state.passwordError ?: ""
             )
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             Button(
                 onClick = {
